@@ -6,7 +6,7 @@
 /*   By: dkozyr <dkozyr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 17:43:47 by dkozyr            #+#    #+#             */
-/*   Updated: 2019/02/22 17:54:13 by dkozyr           ###   ########.fr       */
+/*   Updated: 2019/02/26 17:05:35 by dkozyr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int		check_file(char *argv)
 {
 	return (ft_strequ(argv, "Mandelbrot") || ft_strequ(argv, "mandelbrot") ||
-			ft_strequ(argv, "1") || ft_strequ(argv, "julia") ||
-			ft_strequ(argv, "Julia") || ft_strequ(argv, "2") ||
+			ft_strequ(argv, "0") || ft_strequ(argv, "julia") ||
+			ft_strequ(argv, "Julia") || ft_strequ(argv, "1") ||
 			ft_strequ(argv, "Smth") || ft_strequ(argv, "smth"));
 }
 

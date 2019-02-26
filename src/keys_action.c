@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_keys.c                                      :+:      :+:    :+:   */
+/*   keys_action.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkozyr <dkozyr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/21 18:18:36 by dkozyr            #+#    #+#             */
-/*   Updated: 2019/02/26 13:51:24 by dkozyr           ###   ########.fr       */
+/*   Created: 2019/02/26 14:43:51 by dkozyr            #+#    #+#             */
+/*   Updated: 2019/02/26 17:05:47 by dkozyr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int		key_press(int key, t_mlx *mlx)
+void	change_fractol(int key, t_mlx *mlx)
 {
-	if (ESC)
-		exit_fractol(10, "ESC is pressed", mlx);
-	if (UP || DOWN || LEFT || RIGHT)
-		mlx_string_put(PTR, WIN, 20, 20, AQUA, "UP/DOWN/LEFT/RIGHT");
-	if (PLUS || MINUS || PLUSS || MINUSS)
-		mlx_string_put(PTR, WIN, 20, 40, AQUA, "MINUS || PLUS");
-	if (QUOTMARK || BACKSLASH || COLON)
-		change_fractol(key, mlx);
-	if (TILDA)
-		hints(mlx);
-	return (0);
+	if (QUOTMARK && ID != 0)
+	{
+		mlx_clear_window(PTR, WIN);
+		NAME = "Mandelbrot";
+		ID = 0;
+		mandelbrot(mlx);
+	}
+	else if (BACKSLASH && ID != 1)
+	{
+		ID = 1;
+		NAME = "Julia";
+		mlx_clear_window(PTR, WIN);
+		julia(mlx);
+	}
+	else
+	{
+		printf("colon");
+	}
 }

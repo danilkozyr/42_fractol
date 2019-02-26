@@ -6,7 +6,7 @@
 /*   By: dkozyr <dkozyr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:42:51 by dkozyr            #+#    #+#             */
-/*   Updated: 2019/02/22 18:13:15 by dkozyr           ###   ########.fr       */
+/*   Updated: 2019/02/26 17:05:21 by dkozyr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,16 @@
 # include "libft.h"
 # include "mlx.h"
 # include <math.h>
+# include "pthread.h"
 
-# define WIN_WIDTH 1900
-# define WIN_HEIGHT 1100
+# define WIN_WIDTH 600
+# define WIN_HEIGHT 600
+# define HINT_WIDTH 300
+# define HINT_HEIGHT 300
 # define WIN_NAME "42 FRACTOL"
+
+# define THREAD_WIDTH 5
+# define THREAD_NUMBER 120
 
 # define KEYPRESSED 2
 # define KEYRELEASED 3
@@ -39,20 +45,33 @@
 # define BLACK 0x000000
 
 # define ESC key == 53
+# define TILDA key == 10
+
 # define UP key == 126
 # define DOWN key == 125
 # define LEFT key == 123
 # define RIGHT key == 124
+
 # define PLUS key == 24
 # define PLUSS key == 69
 # define MINUS key == 27
 # define MINUSS key == 78
 
+# define QUOTMARK key == 39
+# define BACKSLASH key == 42
+# define COLON key == 41
+
 # define NAME mlx->filename
 # define ID mlx->id
 # define PTR mlx->ptr
+
+# define HINT mlx->hint
+# define H_WIN mlx->hint->window
+
 # define WIN mlx->window
 # define IMG mlx->image
+
+# define FRACT mlx->fract
 
 typedef struct	s_image
 {
@@ -61,7 +80,15 @@ typedef struct	s_image
 	int			bits_per_pixel;
 	int			size_len;
 	int			endian;
+	char		*color;
 }				t_image;
+
+typedef struct	s_hint
+{
+	void		*window;
+	char		*ptr;
+	int			swtch;
+}				t_hint;
 
 typedef struct	s_mlx
 {
@@ -69,7 +96,25 @@ typedef struct	s_mlx
 	char		*filename;
 	void		*window;
 	char		*ptr;
+	t_hint		*hint;
 	t_image		*image;
+	// t_fract		*fract;
+	// t_rgb		rgb;
+
+	int			color;
+	int			it_max;
+	double		zoom;
+	double		x1;
+	double		y1;
+	double		c_r;
+	double		c_i;
+	double		z_r;
+	double		z_i;
+	double		tmp;
+	int			it;
+	int			x;
+	int			y;
+	int			y_max;
 }				t_mlx;
 
 int				fractol(char *filename);
@@ -78,6 +123,9 @@ void			fractol_distirbution(t_mlx *mlx);
 void			create_title(char *filename, t_mlx *mlx);
 int				exit_fractol(int err_key, char *err_reason, t_mlx *mlx);
 int				check_file(char *argv);
+void			hints(t_mlx *mlx);
+
+void			change_fractol(int key, t_mlx *mlx);
 
 void			mandelbrot(t_mlx *mlx);
 void			julia(t_mlx *mlx);
