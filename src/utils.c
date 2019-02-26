@@ -41,8 +41,13 @@ void	create_title(char *filename, t_mlx *mlx)
 
 void	fractol_distirbution(t_mlx *mlx)
 {
+	if (mlx->it_max < 0)
+		mlx->it_max = 0;
 	if (ID == 0)
+	{
+		mandelbrot_init(mlx);
 		mandelbrot(mlx);
+	}
 	else if (ID == 1)
 		julia(mlx);
 }

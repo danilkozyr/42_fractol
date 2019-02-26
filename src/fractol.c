@@ -6,7 +6,7 @@
 /*   By: dkozyr <dkozyr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:00:12 by dkozyr            #+#    #+#             */
-/*   Updated: 2019/02/26 17:04:49 by dkozyr           ###   ########.fr       */
+/*   Updated: 2019/02/26 18:46:01 by dkozyr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	allocate_memory(t_mlx *mlx)
 	IMG->image = mlx_new_image(PTR, WIN_WIDTH, WIN_HEIGHT);
 	IMG->ptr = mlx_get_data_addr(IMG->image, &IMG->bits_per_pixel,
 								&IMG->size_len, &IMG->endian);
-	IMG->bits_per_pixel /= 8;
 	HINT = malloc(sizeof(t_hint));
 	HINT->swtch = 0;
 }
@@ -41,6 +40,7 @@ int		fractol(char *filename)
 	allocate_memory(mlx);
 	fractol_distirbution(mlx);
 	mlx_hook(WIN, KEYPRESSED, 0, key_press, mlx);
+	mlx_hook(WIN, MOUSEPRESSED, 0, mouse_press, mlx);
 	mlx_hook(WIN, REDBUTTONPRESSED, 0, exit_fractol, (void *)0);
 	mlx_loop(PTR);
 	return (1);

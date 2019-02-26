@@ -6,7 +6,7 @@
 /*   By: dkozyr <dkozyr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:42:51 by dkozyr            #+#    #+#             */
-/*   Updated: 2019/02/26 17:05:21 by dkozyr           ###   ########.fr       */
+/*   Updated: 2019/02/26 19:01:06 by dkozyr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 
 # define ESC key == 53
 # define TILDA key == 10
+# define ENTER key == 36
 
 # define UP key == 126
 # define DOWN key == 125
@@ -60,6 +61,18 @@
 # define QUOTMARK key == 39
 # define BACKSLASH key == 42
 # define COLON key == 41
+
+# define SCROLL_UP button == 4
+# define SCROLL_DOWN button == 5
+
+# define Q key == 12
+# define W key == 13
+# define E key == 14
+# define R key == 15
+# define T key == 17
+# define Y key == 16
+# define U key == 32
+# define I key == 34
 
 # define NAME mlx->filename
 # define ID mlx->id
@@ -98,10 +111,12 @@ typedef struct	s_mlx
 	char		*ptr;
 	t_hint		*hint;
 	t_image		*image;
-	// t_fract		*fract;
-	// t_rgb		rgb;
 
 	int			color;
+	int			x;
+	int			y;
+	int			y_max;
+	int			it;
 	int			it_max;
 	double		zoom;
 	double		x1;
@@ -110,11 +125,6 @@ typedef struct	s_mlx
 	double		c_i;
 	double		z_r;
 	double		z_i;
-	double		tmp;
-	int			it;
-	int			x;
-	int			y;
-	int			y_max;
 }				t_mlx;
 
 int				fractol(char *filename);
@@ -128,8 +138,16 @@ void			hints(t_mlx *mlx);
 void			change_fractol(int key, t_mlx *mlx);
 
 void			mandelbrot(t_mlx *mlx);
+void			mandelbrot_init(t_mlx *mlx);
+
 void			julia(t_mlx *mlx);
 
 int				key_press(int key, t_mlx *mlx);
+int				mouse_press(int button, int x, int y, t_mlx *mlx);
+
+void			reset_fractol(t_mlx *mlx);
+void			move(int key, t_mlx *mlx);
+void			zoom(int key, int x, int y, t_mlx *mlx);
+void			change_colors(int key, t_mlx *mlx);
 
 #endif
