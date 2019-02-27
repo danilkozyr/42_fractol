@@ -6,7 +6,7 @@
 /*   By: dkozyr <dkozyr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 14:44:02 by dkozyr            #+#    #+#             */
-/*   Updated: 2019/02/26 14:56:58 by dkozyr           ###   ########.fr       */
+/*   Updated: 2019/02/27 18:11:40 by dkozyr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,29 @@
 
 void	display_hints(t_mlx *mlx)
 {
-	mlx_string_put(PTR, H_WIN, 10, 10, WHITE, "~          :     close hints");
-	mlx_string_put(PTR, H_WIN, 10, 30, WHITE, "ESC        :   close fractol");
-	mlx_string_put(PTR, H_WIN, 10, 50, WHITE, "ARROWS     :    move fractol");
-	mlx_string_put(PTR, H_WIN, 10, 70, WHITE, "'          :           JULIA");
-	mlx_string_put(PTR, H_WIN, 10, 90, WHITE, "\\          :      MANDELBROT");
+	int y;
+
+	y = -10;
+	mlx_string_put(PTR, H_WIN, 10, y += 20, WHITE,
+					"~          :     close hints");
+	mlx_string_put(PTR, H_WIN, 10, y += 20, WHITE,
+					"'          :           julia");
+	mlx_string_put(PTR, H_WIN, 10, y += 20, WHITE,
+					"\\          :      mandelbrot");
+	mlx_string_put(PTR, H_WIN, 10, y += 20, WHITE,
+					"m          :  show iteratins");
+	mlx_string_put(PTR, H_WIN, 10, y += 20, WHITE,
+					"esc        :   close fractol");
+	mlx_string_put(PTR, H_WIN, 10, y += 20, WHITE,
+					"q - i      :   change colors");
+	mlx_string_put(PTR, H_WIN, 10, y += 20, WHITE,
+					"enter      :   reset fractol");
+	mlx_string_put(PTR, H_WIN, 10, y += 20, WHITE,
+					"arrows     :    move fractol");
+	mlx_string_put(PTR, H_WIN, 10, y += 20, WHITE,
+					"scroll     :    zoom fractol");
+	mlx_string_put(PTR, H_WIN, 10, y += 20, WHITE,
+					"mouseclick :      mouse mode");
 }
 
 void	draw_border(t_mlx *mlx)

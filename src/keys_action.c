@@ -6,7 +6,7 @@
 /*   By: dkozyr <dkozyr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 14:43:51 by dkozyr            #+#    #+#             */
-/*   Updated: 2019/02/26 19:30:52 by dkozyr           ###   ########.fr       */
+/*   Updated: 2019/02/27 18:00:09 by dkozyr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,30 +18,30 @@ void	change_colors(int key, t_mlx *mlx)
 
 	i = 0;
 	if (Q)
-		mlx->color = 1677216;
-	if (W)
-		mlx->color += 20000;
-	if (E)
-		mlx->color *= (-200);
-	if (R)
 		mlx->color = 1285;
+	if (W)
+		mlx->color = 1677216;
+	if (E)
+		mlx->color = 264686;
+	if (R)
+		mlx->color = 1444368;
 	if (T)
-		mlx->color = 12677216;
+		mlx->color = 6234656;
 	if (Y)
-		mlx->color = 1659816;
+		mlx->color = -423403200;
 	if (U)
-		mlx->color = 549872704;
-	ft_putnbr(mlx->color);
-	ft_putendl("\\");
+		mlx->color += 5000;
+	if (I)
+		mlx->color -= 5000;
 }
 
 void	change_fractol(int key, t_mlx *mlx)
 {
 	if (QUOTMARK && ID != 0)
 	{
-		mlx_clear_window(PTR, WIN);
 		NAME = "Mandelbrot";
 		ID = 0;
+		mlx_clear_window(PTR, WIN);
 		mandelbrot_init(mlx);
 		mandelbrot(mlx);
 	}
@@ -60,14 +60,14 @@ void	change_fractol(int key, t_mlx *mlx)
 
 void	zoom(int key, int x, int y, t_mlx *mlx)
 {
-	if (key == 5)
+	if (key == 5 || PLUS || PLUSS)
 	{
 		mlx->x1 = (x / mlx->zoom + mlx->x1) - (x / (mlx->zoom * 1.1));
 		mlx->y1 = (y / mlx->zoom + mlx->y1) - (y / (mlx->zoom * 1.1));
 		mlx->zoom *= 1.1;
 		mlx->it_max++;
 	}
-	else if (key == 4)
+	else if (key == 4 || MINUS || MINUSS)
 	{
 		mlx->x1 = (x / mlx->zoom + mlx->x1) - (x / (mlx->zoom / 1.1));
 		mlx->y1 = (y / mlx->zoom + mlx->y1) - (y / (mlx->zoom / 1.1));
@@ -92,4 +92,6 @@ void	reset_fractol(t_mlx *mlx)
 {
 	if (ID == 0)
 		mandelbrot_init(mlx);
+	if (ID == 1)
+		julia_init(mlx);
 }

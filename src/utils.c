@@ -6,7 +6,7 @@
 /*   By: dkozyr <dkozyr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 17:43:47 by dkozyr            #+#    #+#             */
-/*   Updated: 2019/02/26 17:05:35 by dkozyr           ###   ########.fr       */
+/*   Updated: 2019/02/27 18:01:07 by dkozyr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,12 @@ void	create_title(char *filename, t_mlx *mlx)
 	NAME = ft_strjoin("FRACTAL.  ", NAME);
 }
 
-void	fractol_distirbution(t_mlx *mlx)
+void	fractol_init(t_mlx *mlx)
 {
-	if (mlx->it_max < 0)
-		mlx->it_max = 0;
 	if (ID == 0)
-	{
 		mandelbrot_init(mlx);
-		mandelbrot(mlx);
-	}
-	else if (ID == 1)
-		julia(mlx);
+	if (ID == 1)
+		julia_init(mlx);
 }
 
 int		exit_fractol(int err_key, char *err_reason, t_mlx *mlx)
@@ -68,4 +63,14 @@ int		exit_fractol(int err_key, char *err_reason, t_mlx *mlx)
 		ft_putendl(err_reason);
 	}
 	exit(EXIT_SUCCESS);
+}
+
+void	put_pxl_to_img(t_mlx *mlx, int x, int y, int color)
+{
+	if (mlx->x < WIN_WIDTH && mlx->y < WIN_WIDTH)
+	{
+		color = mlx_get_color_value(mlx->ptr, color);
+		ft_memcpy(IMG->ptr + 4 * WIN_WIDTH * y + x * 4,
+				&color, sizeof(int));
+	}
 }

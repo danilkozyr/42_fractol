@@ -6,7 +6,7 @@
 /*   By: dkozyr <dkozyr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:42:51 by dkozyr            #+#    #+#             */
-/*   Updated: 2019/02/26 19:01:06 by dkozyr           ###   ########.fr       */
+/*   Updated: 2019/02/27 17:57:43 by dkozyr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@
 # define U key == 32
 # define I key == 34
 
+# define M key == 46
+
 # define NAME mlx->filename
 # define ID mlx->id
 # define PTR mlx->ptr
@@ -101,6 +103,7 @@ typedef struct	s_hint
 	void		*window;
 	char		*ptr;
 	int			swtch;
+	int			it_sw;
 }				t_hint;
 
 typedef struct	s_mlx
@@ -118,6 +121,7 @@ typedef struct	s_mlx
 	int			y_max;
 	int			it;
 	int			it_max;
+	int			mouse_sw;
 	double		zoom;
 	double		x1;
 	double		y1;
@@ -129,11 +133,13 @@ typedef struct	s_mlx
 
 int				fractol(char *filename);
 
-void			fractol_distirbution(t_mlx *mlx);
 void			create_title(char *filename, t_mlx *mlx);
 int				exit_fractol(int err_key, char *err_reason, t_mlx *mlx);
 int				check_file(char *argv);
 void			hints(t_mlx *mlx);
+void			fractol_init(t_mlx *mlx);
+void			fractol_go(t_mlx *mlx);
+void			*fractol_thr(void *tab);
 
 void			change_fractol(int key, t_mlx *mlx);
 
@@ -141,13 +147,18 @@ void			mandelbrot(t_mlx *mlx);
 void			mandelbrot_init(t_mlx *mlx);
 
 void			julia(t_mlx *mlx);
+void			julia_init(t_mlx *mlx);
 
 int				key_press(int key, t_mlx *mlx);
 int				mouse_press(int button, int x, int y, t_mlx *mlx);
+int				mouse_move(int x, int y, t_mlx *mlx);
 
 void			reset_fractol(t_mlx *mlx);
 void			move(int key, t_mlx *mlx);
 void			zoom(int key, int x, int y, t_mlx *mlx);
 void			change_colors(int key, t_mlx *mlx);
+void			show_iterations(t_mlx *mlx);
+
+void			put_pxl_to_img(t_mlx *mlx, int x, int y, int color);
 
 #endif
