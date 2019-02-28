@@ -6,7 +6,7 @@
 /*   By: dkozyr <dkozyr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 17:43:47 by dkozyr            #+#    #+#             */
-/*   Updated: 2019/02/27 18:01:07 by dkozyr           ###   ########.fr       */
+/*   Updated: 2019/02/28 15:33:59 by dkozyr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int		check_file(char *argv)
 	return (ft_strequ(argv, "Mandelbrot") || ft_strequ(argv, "mandelbrot") ||
 			ft_strequ(argv, "0") || ft_strequ(argv, "julia") ||
 			ft_strequ(argv, "Julia") || ft_strequ(argv, "1") ||
-			ft_strequ(argv, "Smth") || ft_strequ(argv, "smth"));
+			ft_strequ(argv, "Burningship") || ft_strequ(argv, "burningship") ||
+			ft_strequ(argv, "2"));
 }
 
 void	create_title(char *filename, t_mlx *mlx)
@@ -36,6 +37,13 @@ void	create_title(char *filename, t_mlx *mlx)
 		ID = 1;
 		NAME = "Julia";
 	}
+	else if (ft_strequ(filename, "Burningship") ||
+			ft_strequ(filename, "burningship") ||
+			ft_strequ(filename, "2"))
+	{
+		ID = 2;
+		NAME = "Burningship";
+	}
 	NAME = ft_strjoin("FRACTAL.  ", NAME);
 }
 
@@ -45,6 +53,8 @@ void	fractol_init(t_mlx *mlx)
 		mandelbrot_init(mlx);
 	if (ID == 1)
 		julia_init(mlx);
+	if (ID == 2)
+		burningship_init(mlx);
 }
 
 int		exit_fractol(int err_key, char *err_reason, t_mlx *mlx)
@@ -55,7 +65,7 @@ int		exit_fractol(int err_key, char *err_reason, t_mlx *mlx)
 		ft_putstr_fd("42_fractol", STDERR_FILENO);
 		ft_putstr_fd(" [fractals]\n", STDERR_FILENO);
 		ft_putstr_fd("Fractals :\n--> Mandelbrot\n", STDERR_FILENO);
-		ft_putstr_fd("--> Julia\n--> smth else\n", STDERR_FILENO);
+		ft_putstr_fd("--> Julia\n--> Burningship\n", STDERR_FILENO);
 	}
 	else if (err_key == 10)
 	{

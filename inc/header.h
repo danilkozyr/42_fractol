@@ -6,7 +6,7 @@
 /*   By: dkozyr <dkozyr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:42:51 by dkozyr            #+#    #+#             */
-/*   Updated: 2019/02/27 17:57:43 by dkozyr           ###   ########.fr       */
+/*   Updated: 2019/02/28 15:08:50 by dkozyr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,10 +144,12 @@ void			*fractol_thr(void *tab);
 void			change_fractol(int key, t_mlx *mlx);
 
 void			mandelbrot(t_mlx *mlx);
-void			mandelbrot_init(t_mlx *mlx);
-
 void			julia(t_mlx *mlx);
+void			burningship(t_mlx *mlx);
+void			mandelbrot_init(t_mlx *mlx);
+void			burningship_init(t_mlx *mlx);
 void			julia_init(t_mlx *mlx);
+
 
 int				key_press(int key, t_mlx *mlx);
 int				mouse_press(int button, int x, int y, t_mlx *mlx);

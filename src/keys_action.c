@@ -6,7 +6,7 @@
 /*   By: dkozyr <dkozyr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 14:43:51 by dkozyr            #+#    #+#             */
-/*   Updated: 2019/02/27 18:00:09 by dkozyr           ###   ########.fr       */
+/*   Updated: 2019/02/28 15:25:29 by dkozyr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	change_colors(int key, t_mlx *mlx)
 
 void	change_fractol(int key, t_mlx *mlx)
 {
-	if (QUOTMARK && ID != 0)
+	if (COLON && ID != 0)
 	{
 		NAME = "Mandelbrot";
 		ID = 0;
@@ -45,16 +45,21 @@ void	change_fractol(int key, t_mlx *mlx)
 		mandelbrot_init(mlx);
 		mandelbrot(mlx);
 	}
-	else if (BACKSLASH && ID != 1)
+	else if (QUOTMARK && ID != 1)
 	{
 		ID = 1;
 		NAME = "Julia";
 		mlx_clear_window(PTR, WIN);
+		julia_init(mlx);
 		julia(mlx);
 	}
-	else
+	else if (BACKSLASH && ID != 2)
 	{
-		printf("colon");
+		ID = 2;
+		NAME = "Burningship";
+		mlx_clear_window(PTR, WIN);
+		burningship_init(mlx);
+		burningship(mlx);
 	}
 }
 
@@ -94,4 +99,6 @@ void	reset_fractol(t_mlx *mlx)
 		mandelbrot_init(mlx);
 	if (ID == 1)
 		julia_init(mlx);
+	if (ID == 2)
+		burningship_init(mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: dkozyr <dkozyr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 15:59:21 by dkozyr            #+#    #+#             */
-/*   Updated: 2019/02/27 18:01:14 by dkozyr           ###   ########.fr       */
+/*   Updated: 2019/02/28 15:24:43 by dkozyr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void	julia_init(t_mlx *mlx)
 {
 	mlx->it_max = 50;
-	mlx->zoom = 200;
-	mlx->x1 = -2.0;
-	mlx->y1 = -1.9;
-	mlx->color = 265;
+	mlx->zoom = 204;
+	mlx->x1 = -1.51;
+	mlx->y1 = -1.47;
+	mlx->color = 1285;
 	mlx->c_r = 0.285;
 	mlx->c_i = 0.01;
 }

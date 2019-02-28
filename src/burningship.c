@@ -1,42 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   burningship.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkozyr <dkozyr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/21 18:00:12 by dkozyr            #+#    #+#             */
-/*   Updated: 2019/02/28 15:24:40 by dkozyr           ###   ########.fr       */
+/*   Created: 2019/02/28 15:06:32 by dkozyr            #+#    #+#             */
+/*   Updated: 2019/02/28 15:33:05 by dkozyr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	mandelbrot_init(t_mlx *mlx)
+void	burningship_init(t_mlx *mlx)
 {
 	mlx->it_max = 50;
-	mlx->zoom = 225;
-	mlx->x1 = -2.11;
-	mlx->y1 = -1.36;
+	mlx->zoom = 180;
+	mlx->x1 = -2.07;
+	mlx->y1 = -2.21;
 	mlx->color = 1285;
 }
 
-void	mandelbrot(t_mlx *mlx)
+void	burningship(t_mlx *mlx)
 {
-	double	tmp;
+	double tmp;
 
 	mlx->c_r = mlx->x / mlx->zoom + mlx->x1;
 	mlx->c_i = mlx->y / mlx->zoom + mlx->y1;
 	mlx->z_r = 0;
 	mlx->z_i = 0;
 	mlx->it = 0;
-	while (mlx->z_r * mlx->z_r + mlx->z_i *
-			mlx->z_i < 4 && mlx->it < mlx->it_max)
+	while (mlx->z_r * mlx->z_r + mlx->z_i * mlx->z_i < 4
+			&& mlx->it < mlx->it_max)
 	{
-		tmp = mlx->z_r;
-		mlx->z_r = mlx->z_r * mlx->z_r -
-			mlx->z_i * mlx->z_i + mlx->c_r;
-		mlx->z_i = 2 * mlx->z_i * tmp + mlx->c_i;
+		tmp = mlx->z_r * mlx->z_r - mlx->z_i * mlx->z_i + mlx->c_r;
+		mlx->z_i = fabs(2 * mlx->z_r * mlx->z_i) + mlx->c_i;
+		mlx->z_r = tmp;
 		mlx->it++;
 	}
 	if (mlx->it == mlx->it_max)

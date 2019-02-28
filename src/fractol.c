@@ -6,7 +6,7 @@
 /*   By: dkozyr <dkozyr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:00:12 by dkozyr            #+#    #+#             */
-/*   Updated: 2019/02/27 18:12:10 by dkozyr           ###   ########.fr       */
+/*   Updated: 2019/02/28 15:09:48 by dkozyr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	*fractol_thr(void *tab)
 		{
 			(ID == 0) ? mandelbrot(mlx) : 0;
 			(ID == 1) ? julia(mlx) : 0;
+			(ID == 2) ? burningship(mlx) : 0;
 			mlx->y++;
 		}
 		mlx->x++;

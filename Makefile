@@ -23,7 +23,7 @@ SRCDIR = ./src
 OBJDIR = $(SRCDIR)/obj
 
 SRC = main.c fractol.c handle_keys.c mandelbrot.c julia.c utils.c keys_action.c \
-		hints.c
+		hints.c burningship.c
 OBJ = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 INC = -I $(LIBDIR)/inc -I $(SRCDIR) -I $(MLXDIR)
 
