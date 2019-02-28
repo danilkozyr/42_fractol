@@ -6,7 +6,7 @@
 /*   By: dkozyr <dkozyr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 14:43:51 by dkozyr            #+#    #+#             */
-/*   Updated: 2019/02/28 16:45:09 by dkozyr           ###   ########.fr       */
+/*   Updated: 2019/02/28 17:04:59 by dkozyr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	change_fractol(int key, t_mlx *mlx)
 
 void	zoom(int key, int x, int y, t_mlx *mlx)
 {
+	if (mlx->it_max == 30)
+		return ;
 	if (key == 5 || PLUS || PLUSS)
 	{
 		mlx->x1 = (x / mlx->zoom + mlx->x1) - (x / (mlx->zoom * 1.2));
@@ -83,13 +85,13 @@ void	zoom(int key, int x, int y, t_mlx *mlx)
 
 void	move(int key, t_mlx *mlx)
 {
-	if (DOWN)
+	if (UP)
 		mlx->y1 = mlx->y1 - 15 / mlx->zoom;
-	else if (UP)
+	else if (DOWN)
 		mlx->y1 = mlx->y1 + 15 / mlx->zoom;
-	else if (RIGHT)
-		mlx->x1 = mlx->x1 - 15 / mlx->zoom;
 	else if (LEFT)
+		mlx->x1 = mlx->x1 - 15 / mlx->zoom;
+	else if (RIGHT)
 		mlx->x1 = mlx->x1 + 15 / mlx->zoom;
 }
 
