@@ -6,7 +6,7 @@
 /*   By: dkozyr <dkozyr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 14:43:51 by dkozyr            #+#    #+#             */
-/*   Updated: 2019/02/28 15:25:29 by dkozyr           ###   ########.fr       */
+/*   Updated: 2019/02/28 16:45:09 by dkozyr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,30 +67,30 @@ void	zoom(int key, int x, int y, t_mlx *mlx)
 {
 	if (key == 5 || PLUS || PLUSS)
 	{
-		mlx->x1 = (x / mlx->zoom + mlx->x1) - (x / (mlx->zoom * 1.1));
-		mlx->y1 = (y / mlx->zoom + mlx->y1) - (y / (mlx->zoom * 1.1));
-		mlx->zoom *= 1.1;
+		mlx->x1 = (x / mlx->zoom + mlx->x1) - (x / (mlx->zoom * 1.2));
+		mlx->y1 = (y / mlx->zoom + mlx->y1) - (y / (mlx->zoom * 1.2));
+		mlx->zoom = mlx->zoom * 1.2;
 		mlx->it_max++;
 	}
 	else if (key == 4 || MINUS || MINUSS)
 	{
-		mlx->x1 = (x / mlx->zoom + mlx->x1) - (x / (mlx->zoom / 1.1));
-		mlx->y1 = (y / mlx->zoom + mlx->y1) - (y / (mlx->zoom / 1.1));
-		mlx->zoom /= 1.1;
+		mlx->x1 = (x / mlx->zoom + mlx->x1) - (x / (mlx->zoom / 1.2));
+		mlx->y1 = (y / mlx->zoom + mlx->y1) - (y / (mlx->zoom / 1.2));
+		mlx->zoom = mlx->zoom / 1.2;
 		mlx->it_max--;
 	}
 }
 
 void	move(int key, t_mlx *mlx)
 {
-	if (UP)
-		mlx->y1 -= 30 / mlx->zoom;
-	else if (DOWN)
-		mlx->y1 = mlx->y1 + 30 / mlx->zoom;
-	else if (LEFT)
-		mlx->x1 = mlx->x1 - 30 / mlx->zoom;
+	if (DOWN)
+		mlx->y1 = mlx->y1 - 15 / mlx->zoom;
+	else if (UP)
+		mlx->y1 = mlx->y1 + 15 / mlx->zoom;
 	else if (RIGHT)
-		mlx->x1 = mlx->x1 + 30 / mlx->zoom;
+		mlx->x1 = mlx->x1 - 15 / mlx->zoom;
+	else if (LEFT)
+		mlx->x1 = mlx->x1 + 15 / mlx->zoom;
 }
 
 void	reset_fractol(t_mlx *mlx)

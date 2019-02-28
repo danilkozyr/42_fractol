@@ -6,7 +6,7 @@
 /*   By: dkozyr <dkozyr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:00:12 by dkozyr            #+#    #+#             */
-/*   Updated: 2019/02/28 15:09:48 by dkozyr           ###   ########.fr       */
+/*   Updated: 2019/02/28 16:38:55 by dkozyr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@
 */
 
 #include "header.h"
+
+void	fractol_init(t_mlx *mlx)
+{
+	if (ID == 0)
+		mandelbrot_init(mlx);
+	if (ID == 1)
+		julia_init(mlx);
+	if (ID == 2)
+		burningship_init(mlx);
+}
 
 void	*fractol_thr(void *tab)
 {
@@ -81,7 +91,7 @@ int		fractol(char *filename)
 	t_mlx *mlx;
 
 	mlx = malloc(sizeof(t_mlx));
-	create_title(filename, mlx);
+	mlx->filename = filename;
 	allocate_memory(mlx);
 	fractol_init(mlx);
 	fractol_go(mlx);
