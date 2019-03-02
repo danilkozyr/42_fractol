@@ -6,7 +6,7 @@
 /*   By: dkozyr <dkozyr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 17:43:47 by dkozyr            #+#    #+#             */
-/*   Updated: 2019/03/02 17:02:53 by dkozyr           ###   ########.fr       */
+/*   Updated: 2019/03/02 18:28:16 by dkozyr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int		exit_fractol(int err_key, char *err_reason, t_mlx *mlx)
 	else if (err_key == 10)
 		ft_putendl(err_reason);
 	free_memory(mlx);
-	system("leaks fractol");
 	exit(EXIT_SUCCESS);
 }
 

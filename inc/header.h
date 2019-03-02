@@ -6,14 +6,12 @@
 /*   By: dkozyr <dkozyr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:42:51 by dkozyr            #+#    #+#             */
-/*   Updated: 2019/03/02 16:53:08 by dkozyr           ###   ########.fr       */
+/*   Updated: 2019/03/02 18:28:25 by dkozyr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HEADER_H
 # define HEADER_H
-
-# include <stdio.h>
 
 # include "libft.h"
 # include "mlx.h"
@@ -23,7 +21,7 @@
 # define WIN_WIDTH 600
 # define WIN_HEIGHT 600
 # define HINT_WIDTH 300
-# define HINT_HEIGHT 300
+# define HINT_HEIGHT 240
 # define WIN_NAME "42 FRACTOL"
 
 # define THREAD_WIDTH 5
@@ -94,8 +92,8 @@ typedef struct	s_fract
 	int			x;
 	int			y;
 	int			y_max;
-	int			it;
-	int			it_max;
+	int			iter;
+	int			iter_max;
 	int			mouse_sw;
 	double		zoom;
 	double		x1;
@@ -105,7 +103,6 @@ typedef struct	s_fract
 	double		z_r;
 	double		z_i;
 }				t_fract;
-
 
 typedef struct	s_image
 {
@@ -134,22 +131,7 @@ typedef struct	s_mlx
 	t_hint		*hint;
 	t_image		*image;
 	t_fract		fract;
-	// t_fract		*fract;
 
-	// int			color;
-	// int			x;
-	// int			y;
-	// int			y_max;
-	// int			it;
-	// int			it_max;
-	// int			mouse_sw;
-	// double		zoom;
-	// double		x1;
-	// double		y1;
-	// double		c_r;
-	// double		c_i;
-	// double		z_r;
-	// double		z_i;
 }				t_mlx;
 
 int				fractol(char *filename);
@@ -163,6 +145,8 @@ void			fractol_go(t_mlx *mlx);
 void			*fractol_thr(void *tab);
 
 void			change_fractol(int key, t_mlx *mlx);
+
+int				fractol_dist(t_mlx *mlx);
 
 void			mandelbrot(t_mlx *mlx);
 void			julia(t_mlx *mlx);

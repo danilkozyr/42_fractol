@@ -6,7 +6,7 @@
 /*   By: dkozyr <dkozyr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 14:43:51 by dkozyr            #+#    #+#             */
-/*   Updated: 2019/03/02 16:54:27 by dkozyr           ###   ########.fr       */
+/*   Updated: 2019/03/02 18:25:18 by dkozyr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,21 +65,21 @@ void	change_fractol(int key, t_mlx *mlx)
 
 void	zoom(int key, int x, int y, t_mlx *mlx)
 {
-	if (FRACT.it_max == 30)
+	if (FRACT.iter_max == 30)
 		return ;
 	if (key == 5 || PLUS || PLUSS)
 	{
 		FRACT.x1 = (x / FRACT.zoom + FRACT.x1) - (x / (FRACT.zoom * 1.2));
 		FRACT.y1 = (y / FRACT.zoom + FRACT.y1) - (y / (FRACT.zoom * 1.2));
 		FRACT.zoom = FRACT.zoom * 1.2;
-		FRACT.it_max++;
+		FRACT.iter_max++;
 	}
 	else if (key == 4 || MINUS || MINUSS)
 	{
 		FRACT.x1 = (x / FRACT.zoom + FRACT.x1) - (x / (FRACT.zoom / 1.2));
 		FRACT.y1 = (y / FRACT.zoom + FRACT.y1) - (y / (FRACT.zoom / 1.2));
 		FRACT.zoom = FRACT.zoom / 1.2;
-		FRACT.it_max--;
+		FRACT.iter_max--;
 	}
 }
 

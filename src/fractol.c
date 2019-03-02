@@ -6,7 +6,7 @@
 /*   By: dkozyr <dkozyr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:00:12 by dkozyr            #+#    #+#             */
-/*   Updated: 2019/03/02 16:56:08 by dkozyr           ###   ########.fr       */
+/*   Updated: 2019/03/02 17:08:26 by dkozyr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 void	fractol_init(t_mlx *mlx)
 {
+	fractol_dist(mlx);
 	if (ID == 0)
 		mandelbrot_init(mlx);
 	if (ID == 1)
