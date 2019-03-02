@@ -6,7 +6,7 @@
 /*   By: dkozyr <dkozyr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 17:43:47 by dkozyr            #+#    #+#             */
-/*   Updated: 2019/02/28 16:40:55 by dkozyr           ###   ########.fr       */
+/*   Updated: 2019/03/02 17:02:53 by dkozyr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,17 @@ int		check_file(char *argv)
 	return (ft_strequ(argv, "Mandelbrot") || ft_strequ(argv, "mandelbrot") ||
 			ft_strequ(argv, "julia") || ft_strequ(argv, "Julia") ||
 			ft_strequ(argv, "Burningship") || ft_strequ(argv, "burningship"));
+}
+
+int		fractol_dist(t_mlx *mlx)
+{
+	if (ft_strequ(mlx->filename, "Mandelbrot"))
+		ID = 0;
+	else if (ft_strequ(mlx->filename, "julia"))
+		ID = 1;
+	else if (ft_strequ(mlx->filename, "burningship"))
+		ID = 2;
+	return (ID);
 }
 
 void	free_memory(t_mlx *mlx)
@@ -52,7 +63,7 @@ int		exit_fractol(int err_key, char *err_reason, t_mlx *mlx)
 
 void	put_pxl_to_img(t_mlx *mlx, int x, int y, int color)
 {
-	if (mlx->x < WIN_WIDTH && mlx->y < WIN_WIDTH)
+	if (FRACT.x < WIN_WIDTH && FRACT.y < WIN_WIDTH)
 	{
 		color = mlx_get_color_value(mlx->ptr, color);
 		ft_memcpy(IMG->ptr + 4 * WIN_WIDTH * y + x * 4,

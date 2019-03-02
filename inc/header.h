@@ -6,7 +6,7 @@
 /*   By: dkozyr <dkozyr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:42:51 by dkozyr            #+#    #+#             */
-/*   Updated: 2019/02/28 16:23:52 by dkozyr           ###   ########.fr       */
+/*   Updated: 2019/03/02 16:53:08 by dkozyr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,25 @@
 
 # define FRACT mlx->fract
 
+typedef struct	s_fract
+{
+	int			color;
+	int			x;
+	int			y;
+	int			y_max;
+	int			it;
+	int			it_max;
+	int			mouse_sw;
+	double		zoom;
+	double		x1;
+	double		y1;
+	double		c_r;
+	double		c_i;
+	double		z_r;
+	double		z_i;
+}				t_fract;
+
+
 typedef struct	s_image
 {
 	void		*ptr;
@@ -114,21 +133,23 @@ typedef struct	s_mlx
 	char		*ptr;
 	t_hint		*hint;
 	t_image		*image;
+	t_fract		fract;
+	// t_fract		*fract;
 
-	int			color;
-	int			x;
-	int			y;
-	int			y_max;
-	int			it;
-	int			it_max;
-	int			mouse_sw;
-	double		zoom;
-	double		x1;
-	double		y1;
-	double		c_r;
-	double		c_i;
-	double		z_r;
-	double		z_i;
+	// int			color;
+	// int			x;
+	// int			y;
+	// int			y_max;
+	// int			it;
+	// int			it_max;
+	// int			mouse_sw;
+	// double		zoom;
+	// double		x1;
+	// double		y1;
+	// double		c_r;
+	// double		c_i;
+	// double		z_r;
+	// double		z_i;
 }				t_mlx;
 
 int				fractol(char *filename);

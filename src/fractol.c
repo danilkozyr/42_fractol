@@ -6,7 +6,7 @@
 /*   By: dkozyr <dkozyr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:00:12 by dkozyr            #+#    #+#             */
-/*   Updated: 2019/02/28 16:38:55 by dkozyr           ###   ########.fr       */
+/*   Updated: 2019/03/02 16:56:08 by dkozyr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,19 @@ void	*fractol_thr(void *tab)
 	int		tmp;
 
 	mlx = (t_mlx *)tab;
-	mlx->x = 0;
-	tmp = mlx->y;
-	while (mlx->x < WIN_WIDTH)
+	FRACT.x = 0;
+	tmp = FRACT.y;
+	while (FRACT.x < WIN_WIDTH)
 	{
-		mlx->y = tmp;
-		while (mlx->y < mlx->y_max)
+		FRACT.y = tmp;
+		while (FRACT.y < FRACT.y_max)
 		{
 			(ID == 0) ? mandelbrot(mlx) : 0;
 			(ID == 1) ? julia(mlx) : 0;
 			(ID == 2) ? burningship(mlx) : 0;
-			mlx->y++;
+			FRACT.y++;
 		}
-		mlx->x++;
+		FRACT.x++;
 	}
 	return (tab);
 }
@@ -62,8 +62,8 @@ void	fractol_go(t_mlx *mlx)
 	while (i < THREAD_NUMBER)
 	{
 		ft_memcpy((void*)&tab[i], (void*)mlx, sizeof(t_mlx));
-		tab[i].y = THREAD_WIDTH * i;
-		tab[i].y_max = THREAD_WIDTH * (i + 1);
+		tab[i].fract.y = THREAD_WIDTH * i;
+		tab[i].fract.y_max = THREAD_WIDTH * (i + 1);
 		pthread_create(&t[i], NULL, fractol_thr, &tab[i]);
 		i++;
 	}
@@ -83,7 +83,7 @@ void	allocate_memory(t_mlx *mlx)
 	HINT = malloc(sizeof(t_hint));
 	HINT->swtch = 0;
 	HINT->it_sw = 0;
-	mlx->mouse_sw = 1;
+	FRACT.mouse_sw = 1;
 }
 
 int		fractol(char *filename)

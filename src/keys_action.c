@@ -6,7 +6,7 @@
 /*   By: dkozyr <dkozyr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 14:43:51 by dkozyr            #+#    #+#             */
-/*   Updated: 2019/02/28 17:04:59 by dkozyr           ###   ########.fr       */
+/*   Updated: 2019/03/02 16:54:27 by dkozyr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@ void	change_colors(int key, t_mlx *mlx)
 
 	i = 0;
 	if (Q)
-		mlx->color = 1285;
+		FRACT.color = 1285;
 	if (W)
-		mlx->color = 1677216;
+		FRACT.color = 1677216;
 	if (E)
-		mlx->color = 264686;
+		FRACT.color = 264686;
 	if (R)
-		mlx->color = 1444368;
+		FRACT.color = 1444368;
 	if (T)
-		mlx->color = 6234656;
+		FRACT.color = 6234656;
 	if (Y)
-		mlx->color = -423403200;
+		FRACT.color = -423403200;
 	if (U)
-		mlx->color += 5000;
+		FRACT.color += 5000;
 	if (I)
-		mlx->color -= 5000;
+		FRACT.color -= 5000;
 }
 
 void	change_fractol(int key, t_mlx *mlx)
@@ -65,34 +65,34 @@ void	change_fractol(int key, t_mlx *mlx)
 
 void	zoom(int key, int x, int y, t_mlx *mlx)
 {
-	if (mlx->it_max == 30)
+	if (FRACT.it_max == 30)
 		return ;
 	if (key == 5 || PLUS || PLUSS)
 	{
-		mlx->x1 = (x / mlx->zoom + mlx->x1) - (x / (mlx->zoom * 1.2));
-		mlx->y1 = (y / mlx->zoom + mlx->y1) - (y / (mlx->zoom * 1.2));
-		mlx->zoom = mlx->zoom * 1.2;
-		mlx->it_max++;
+		FRACT.x1 = (x / FRACT.zoom + FRACT.x1) - (x / (FRACT.zoom * 1.2));
+		FRACT.y1 = (y / FRACT.zoom + FRACT.y1) - (y / (FRACT.zoom * 1.2));
+		FRACT.zoom = FRACT.zoom * 1.2;
+		FRACT.it_max++;
 	}
 	else if (key == 4 || MINUS || MINUSS)
 	{
-		mlx->x1 = (x / mlx->zoom + mlx->x1) - (x / (mlx->zoom / 1.2));
-		mlx->y1 = (y / mlx->zoom + mlx->y1) - (y / (mlx->zoom / 1.2));
-		mlx->zoom = mlx->zoom / 1.2;
-		mlx->it_max--;
+		FRACT.x1 = (x / FRACT.zoom + FRACT.x1) - (x / (FRACT.zoom / 1.2));
+		FRACT.y1 = (y / FRACT.zoom + FRACT.y1) - (y / (FRACT.zoom / 1.2));
+		FRACT.zoom = FRACT.zoom / 1.2;
+		FRACT.it_max--;
 	}
 }
 
 void	move(int key, t_mlx *mlx)
 {
 	if (UP)
-		mlx->y1 = mlx->y1 - 15 / mlx->zoom;
+		FRACT.y1 = FRACT.y1 - 15 / FRACT.zoom;
 	else if (DOWN)
-		mlx->y1 = mlx->y1 + 15 / mlx->zoom;
+		FRACT.y1 = FRACT.y1 + 15 / FRACT.zoom;
 	else if (LEFT)
-		mlx->x1 = mlx->x1 - 15 / mlx->zoom;
+		FRACT.x1 = FRACT.x1 - 15 / FRACT.zoom;
 	else if (RIGHT)
-		mlx->x1 = mlx->x1 + 15 / mlx->zoom;
+		FRACT.x1 = FRACT.x1 + 15 / FRACT.zoom;
 }
 
 void	reset_fractol(t_mlx *mlx)
